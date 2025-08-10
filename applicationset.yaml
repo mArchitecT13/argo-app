@@ -6,7 +6,7 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: http://<your_host_ip>:3000/<username>/my-repo.git
+        repoURL: https://github.com/mArchitecT13/argo-app.git
         revision: HEAD
         directories:
           - path: "apps/*"
@@ -16,7 +16,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: http://<your_host_ip>:3000/<username>/my-repo.git
+        repoURL: https://github.com/mArchitecT13/argo-app.git
         targetRevision: HEAD
         path: '{{path}}'
       destination:
