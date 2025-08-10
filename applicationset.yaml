@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: all-apps
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: http://<your_host_ip>:3000/<username>/my-repo.git
+        revision: HEAD
+        directories:
+          - path: "apps/*"
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: http://<your_host_ip>:3000/<username>/my-repo.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
